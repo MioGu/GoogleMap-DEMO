@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>googleMaps</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      transform: translate3d(0,0,0);
+    }
+    .container{
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+    .left{
+      height: 100%;
+      width: 250px;
+      overflow: hidden;
+      float: left;
+      /* background-color: skyblue; */
+      background-image: linear-gradient(to bottom, #eee, black);
+      transition: all 0.5s ease;
+    }
+    .left>div{
+      width: 250px;
+    }
+    .fliter{
+      width: 100%;
+      overflow: hidden;
+    }
+    .fliter>input{
+      border: none;
+      padding: 5px 10px;
+      height: 20px;
+    }
+    .fliterBtn{
+      float: right;
+      border: none;
+      outline: none;
+      width: 60px;
+      height: 30px;
+      cursor: pointer;
+      color: #fff;
+      background-color: #2db7f5;
+    }
+    .right{
+      height: 100%;
+      margin-left: 250px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.5s ease;
+      background-image: linear-gradient(to bottom, #eee, black);
+    }
+    .top{
+      height: 50px;
+      overflow: hidden;
+    }
+    #map{
+      flex: 1;
+      border-top: 1px solid #000;
+    }
+    .content li{
+      margin-bottom: 10px;
+      list-style: square;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left" data-bind="style: {width: isHideMenu() ? '0' : '250px'}" >
+      <h1 style="text-align: center;" >ShangHai</h1>
+      <div class="fliter">
+        <button class="fliterBtn" data-bind=" click: filter" >筛选</button>
+        <input type="text" data-bind="value: searchContent" placeholder="请输入地址" >
+      </div>
+      <div class="content">
+        <ul data-bind="foreach: searchArray()" >
+          <li data-bind="text: title, click: $parent.showCurrentMarker.bind(null, title)"></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="right" data-bind="style: { marginLeft: isHideMenu() ? '0px' : '250px'}" >
+      <div class="top">
+        <img src="./image/菜单.png" data-bind="click: hideStateChange" style="height: 25px; width: 30px; margin-left: 20px; margin-top: 13px;" alt="">
+      </div>
+      <div id="map"></div>
+    </div>
+
+  </div>
+  <script src="./js/lib/knockout-3.4.2.js"></script>
+  <!-- jquery仅用作 ajax 请求 -->
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1mS6N1yofnaDUEt6joE8Rp-QvA-a2Ulc&v=3&callback=initMap"></script>
+  <script src="./js/app.js"></script>
+</body>
+
+</html>
