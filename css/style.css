@@ -1,0 +1,118 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  transform: translate3d(0,0,0);
+}
+.container{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.left{
+  height: 100%;
+  width: 0px;
+  overflow: hidden;
+  float: left;
+  /* background-color: skyblue; */
+  background-image: linear-gradient(to bottom, #eee, black);
+  transition: all 0.5s ease;
+}
+.left>div{
+  width: 250px;
+}
+.fliter{
+  width: 100%;
+  overflow: hidden;
+}
+.fliter>input{
+  border: none;
+  padding: 5px 10px;
+  height: 20px;
+}
+.fliterBtn{
+  float: right;
+  border: none;
+  outline: none;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #2db7f5;
+}
+.right{
+  height: 100%;
+  margin-left: 0px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s ease;
+  background-image: linear-gradient(to bottom, #eee, black);
+}
+.top{
+  height: 50px;
+  overflow: hidden;
+}
+#map{
+  flex: 1;
+  border-top: 1px solid #000;
+}
+.content li{
+  margin-bottom: 10px;
+  list-style: square;
+  cursor: pointer;
+}
+
+/* 以下为加载等待动画 */
+.spinner {
+  margin: 100px auto;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}

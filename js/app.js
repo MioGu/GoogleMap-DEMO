@@ -2,16 +2,6 @@ var map;
 var markers = [];
 var largeInfowindow;
 
-var locations = [
-  { title: '上海浦东国际机场', location: { lat:31.144656, lng:121.808167} },
-  { title: '长春', location: { lat:43.817071, lng:125.323544 } },
-  { title: '沈阳', location: { lat:41.805699, lng:123.431472 } },
-  { title: '哈尔滨', location: { lat:45.803775, lng:126.534967 } },
-  { title: '南通', location: { lat:31.980171, lng:120.894291 } },
-  { title: '苏州', location: { lat:31.298974, lng:120.585289 } },
-  { title: '杭州', location: { lat:30.274084, lng:120.15507 } },
-  { title: '上海外滩', location: { lat:31.233004, lng:121.492782 } },
-]
 
 var mapViewModel = function() {
   //用于判断是否隐藏侧滑菜单
@@ -41,7 +31,6 @@ var mapViewModel = function() {
     this.isHideMenu(!this.isHideMenu());
   }
 
-
   //点击列表中 地点 显示地图中标记
   this.showCurrentMarker = (title) => {
     markers.forEach(val=>{
@@ -53,8 +42,13 @@ var mapViewModel = function() {
   }
 }
 
+ko.applyBindings( new mapViewModel() );
 
-ko.applyBindings( new mapViewModel() )
+
+// 地图加载失败请求函数
+function mapErrorHander() {
+  alert('地图资源加载失败');
+}
 
 function initMap() {
 
@@ -68,7 +62,7 @@ function initMap() {
 
   largeInfowindow = new google.maps.InfoWindow();
 
-  for (var i = 0; i < locations.length; i++) {
+  for (let i = 0; i < locations.length; i++) {
     var marker = new google.maps.Marker({
       position: locations[i].location,
       title: locations[i].title,
@@ -91,7 +85,7 @@ function initMap() {
 }
 
 function showListings() {
-  var bounds = new google.maps.LatLngBounds();
+  let bounds = new google.maps.LatLngBounds();
   for(var i=0; i<markers.length; i++){
     markers[i].setMap(map);
     bounds.extend(markers[i].position);
@@ -101,7 +95,7 @@ function showListings() {
 }
 
 function hideListings() {
-  for(var i=0; i<markers.length; i++){
+  for(let i=0; i<markers.length; i++){
     markers[i].setMap(null);
   }
 }
